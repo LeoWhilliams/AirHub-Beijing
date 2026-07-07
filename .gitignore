@@ -19,3 +19,7 @@ Thumbs.db
 # Env (保留示例与开发/生产配置，忽略本地覆盖)
 .env.local
 .env.*.local
+
+# Build info
+*.tsbuildinfo
+
