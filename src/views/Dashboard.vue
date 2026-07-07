@@ -218,7 +218,7 @@ usePolling(() => {
 
 .footer {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1fr 1.3fr 1fr;
   gap: $gap;
   height: 150px;
   margin: $gap;
