@@ -111,6 +111,5 @@ onBeforeUnmount(() => {
   border-radius: 50%;
   background: #52c41a;
   box-shadow: 0 0 8px #52c41a;
-  animation: ah-pulse 1.6s infinite;
 }
 </style>

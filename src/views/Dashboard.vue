@@ -8,6 +8,8 @@ import BaggageBar from '@/components/charts/BaggageBar.vue'
 import SecurityGauge from '@/components/charts/SecurityGauge.vue'
 import AirportMap from '@/components/AirportMap.vue'
 import EventTicker from '@/components/EventTicker.vue'
+import GateStatus from '@/components/GateStatus.vue'
+import OnTimeRank from '@/components/OnTimeRank.vue'
 import { useScreenScale } from '@/composables/useScreenScale'
 import { usePolling } from '@/composables/usePolling'
 import { useFlightStore } from '@/store/flight'
@@ -15,6 +17,7 @@ import { usePassengerStore } from '@/store/passenger'
 import { useBaggageStore } from '@/store/baggage'
 import { useSecurityStore } from '@/store/security'
 import { useEventStore } from '@/store/events'
+import { useExtraStore } from '@/store/extra'
 
 const { scale, offsetX, offsetY, designWidth, designHeight } = useScreenScale()
 
@@ -23,6 +26,7 @@ const passengerStore = usePassengerStore()
 const baggageStore = useBaggageStore()
 const securityStore = useSecurityStore()
 const eventStore = useEventStore()
+const extraStore = useExtraStore()
 
 const metrics = computed(() => [
   { label: '今日航班', value: flightStore.data?.totalToday ?? 0, unit: '架次', color: '#36cfc9' },
@@ -52,6 +56,7 @@ usePolling(() => {
   baggageStore.fetch()
   securityStore.fetch()
   eventStore.fetch()
+  extraStore.fetch()
 }, 5000)
 </script>
 
@@ -109,6 +114,12 @@ usePolling(() => {
       <div class="footer">
         <PanelBox title="实时运行事件">
           <EventTicker :items="eventStore.list" />
+        </PanelBox>
+        <PanelBox title="登机口 / 跑道占用">
+          <GateStatus :gates="extraStore.data?.gates ?? []" />
+        </PanelBox>
+        <PanelBox title="航司准点率 TOP">
+          <OnTimeRank :ranks="extraStore.data?.ranks ?? []" :loading="extraStore.loading" />
         </PanelBox>
       </div>
     </div>
@@ -193,8 +204,10 @@ usePolling(() => {
 }
 
 .footer {
-  height: 120px;
-  margin: $gap;
-  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: $gap;
+  height: 150px;
+  margin: 0 $gap $gap;
 }
 </style>

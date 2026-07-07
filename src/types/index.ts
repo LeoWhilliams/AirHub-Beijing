@@ -46,3 +46,19 @@ export interface DashboardEvent {
   level: 'info' | 'warning' | 'error'
   message: string
 }
+
+export interface GateItem {
+  name: string
+  used: number
+  total: number
+}
+
+export interface RankItem {
+  name: string
+  rate: number
+}
+
+export interface ExtraSummary {
+  gates: GateItem[]
+  ranks: RankItem[]
+}

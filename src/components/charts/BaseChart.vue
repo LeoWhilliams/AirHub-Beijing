@@ -10,10 +10,25 @@ defineProps<{
   option: EChartsOption
   loading?: boolean
 }>()
+
+const darkLoading = {
+  text: '数据加载中',
+  color: '#36cfc9',
+  textColor: '#cfe3ff',
+  maskColor: 'rgba(6, 16, 36, 0.55)',
+  fontSize: 14,
+  zlevel: 0
+}
 </script>
 
 <template>
-  <v-chart class="base-chart" :option="option" :autoresize="true" :loading="loading" />
+  <v-chart
+    class="base-chart"
+    :option="option"
+    :autoresize="true"
+    :loading="loading"
+    :loading-options="darkLoading"
+  />
 </template>
 
 <style scoped lang="scss">

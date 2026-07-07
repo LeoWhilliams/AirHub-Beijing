@@ -1,8 +1,9 @@
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
-import { BarChart, GaugeChart, LineChart, PieChart } from 'echarts/charts'
+import { BarChart, EffectScatterChart, GaugeChart, LineChart, LinesChart, PieChart, ScatterChart } from 'echarts/charts'
 import {
   DataZoomComponent,
+  GeoComponent,
   GridComponent,
   LegendComponent,
   TitleComponent,
@@ -15,9 +16,13 @@ use([
   BarChart,
   PieChart,
   GaugeChart,
+  LinesChart,
+  ScatterChart,
+  EffectScatterChart,
   TitleComponent,
   TooltipComponent,
   GridComponent,
   LegendComponent,
+  GeoComponent,
   DataZoomComponent
 ])

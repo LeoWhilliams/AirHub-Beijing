@@ -1,6 +1,7 @@
 import type {
   BaggageSummary,
   DashboardEvent,
+  ExtraSummary,
   FlightSummary,
   PassengerSummary,
   SecuritySummary
@@ -38,6 +39,14 @@ export function getSecurity(): Promise<SecuritySummary> {
 
 export function getEvents(): Promise<DashboardEvent[]> {
   return mock.getEvents()
+}
+
+export function getExtras(): Promise<ExtraSummary> {
+  return pickSource(
+    async () =>
+      (await import('@/api/extra')).fetchExtras(),
+    mock.getExtras
+  )
 }
 
 export const dataSourceMode = USE_MOCK ? 'mock' : 'api'
