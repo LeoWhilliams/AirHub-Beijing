@@ -73,16 +73,11 @@ usePolling(() => {
       <ScreenHeader />
 
       <div class="content">
-        <section class="col left">
-          <PanelBox title="航班起降趋势" class="box">
-            <FlightTrend :data="flightStore.data" :loading="flightStore.loading" />
-          </PanelBox>
-          <PanelBox title="各区域客流占比" class="box">
-            <PassengerPie :data="passengerStore.data" :loading="passengerStore.loading" />
-          </PanelBox>
-        </section>
+        <PanelBox title="航班起降趋势">
+          <FlightTrend :data="flightStore.data" :loading="flightStore.loading" />
+        </PanelBox>
 
-        <section class="col center">
+        <PanelBox title="核心运行指标" class="metrics-panel">
           <div class="metrics">
             <div
               v-for="m in metrics"
@@ -96,19 +91,23 @@ usePolling(() => {
               <div class="metric-label">{{ m.label }}</div>
             </div>
           </div>
-          <PanelBox title="实时航线态势" class="box grow">
-            <AirportMap :pressure="securityStore.data?.pressure" />
-          </PanelBox>
-        </section>
+        </PanelBox>
 
-        <section class="col right">
-          <PanelBox title="行李分拣量" class="box">
-            <BaggageBar :data="baggageStore.data" :loading="baggageStore.loading" />
-          </PanelBox>
-          <PanelBox title="安检通行压力" class="box">
-            <SecurityGauge :data="securityStore.data" :loading="securityStore.loading" />
-          </PanelBox>
-        </section>
+        <PanelBox title="行李分拣量">
+          <BaggageBar :data="baggageStore.data" :loading="baggageStore.loading" />
+        </PanelBox>
+
+        <PanelBox title="各区域客流占比">
+          <PassengerPie :data="passengerStore.data" :loading="passengerStore.loading" />
+        </PanelBox>
+
+        <PanelBox title="实时航线态势">
+          <AirportMap :pressure="securityStore.data?.pressure" />
+        </PanelBox>
+
+        <PanelBox title="安检通行压力">
+          <SecurityGauge :data="securityStore.data" :loading="securityStore.loading" />
+        </PanelBox>
       </div>
 
       <div class="footer">
@@ -139,45 +138,36 @@ usePolling(() => {
   top: 0;
   left: 0;
   transform-origin: top left;
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr 1.3fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: $gap;
-  height: 820px;
   padding: 0 $gap;
+  min-height: 0;
 }
 
-.col {
-  display: flex;
-  flex-direction: column;
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: $gap;
-  min-height: 0;
-}
-
-.box {
-  flex: 1;
-  min-height: 0;
-}
-
-.center {
-  .metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: $gap;
-  }
-
-  .grow {
-    flex: 1.4;
-  }
+  height: 100%;
 }
 
 .metric {
-  background: $color-panel;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  background: rgba(13, 32, 64, 0.4);
   border: 1px solid;
-  border-radius: $radius;
-  padding: 14px 10px;
+  border-radius: 2px;
+  padding: 10px;
   text-align: center;
   backdrop-filter: blur(4px);
   animation: ah-fade-up 0.6s ease both;
