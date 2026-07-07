@@ -28,39 +28,8 @@
 ## 大屏布局
 
 整屏以 **1920×1080** 为设计基准等比缩放，深色科技风，模块带渐变静态边框与四角小灯：
+<img width="3187" height="1710" alt="image" src="https://github.com/user-attachments/assets/6aba9c94-4a1a-42ec-9f8c-3a0e1c79b9d7" />
 
-```mermaid
-graph TB
-    subgraph Screen["🖥️ 大屏整体布局 1920×1080"]
-        direction TB
-        Header["📌 顶部：标题 / 实时时钟 / 运行状态 / 数据源标识"]
-        Content["📊 内容区（三列网格）"]
-        Footer["📜 底部：实时事件 / 登机口占用 / 航司准点率 TOP"]
-        
-        subgraph Left["◀ 左侧面板"]
-            L1["📈 航班起降趋势<br/>面积折线图"]
-            L2["🍩 各区域客流占比<br/>环形饼图"]
-        end
-        
-        subgraph Center["▶ 中间面板"]
-            C1["📋 核心运行指标<br/>今日航班 / 吞吐 / 准点率 / 行李"]
-            C2["🗺️ 实时航线态势<br/>北京→全国动态地图"]
-        end
-        
-        subgraph Right["▶ 右侧面板"]
-            R1["📊 行李分拣量<br/>柱状图"]
-            R2["⏱ 安检通行压力<br/>仪表盘"]
-        end
-        
-        Screen --> Header
-        Screen --> Content
-        Screen --> Footer
-        
-        Content --> Left
-        Content --> Center
-        Content --> Right
-    end
-```
 
 ---
 
