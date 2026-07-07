@@ -73,41 +73,44 @@ usePolling(() => {
       <ScreenHeader />
 
       <div class="content">
-        <PanelBox title="航班起降趋势">
-          <FlightTrend :data="flightStore.data" :loading="flightStore.loading" />
-        </PanelBox>
+        <div class="col">
+          <PanelBox title="航班起降趋势">
+            <FlightTrend :data="flightStore.data" :loading="flightStore.loading" />
+          </PanelBox>
+          <PanelBox title="各区域客流占比">
+            <PassengerPie :data="passengerStore.data" :loading="passengerStore.loading" />
+          </PanelBox>
+        </div>
 
-        <PanelBox title="核心运行指标" class="metrics-panel">
-          <div class="metrics">
-            <div
-              v-for="m in metrics"
-              :key="m.label"
-              class="metric"
-              :style="{ borderColor: m.color }"
-            >
-              <div class="metric-value" :style="{ color: m.color }">
-                {{ m.value }}<small>{{ m.unit }}</small>
+        <div class="col center-col">
+          <PanelBox title="核心运行指标" class="metrics-panel">
+            <div class="metrics">
+              <div
+                v-for="m in metrics"
+                :key="m.label"
+                class="metric"
+                :style="{ borderColor: m.color }"
+              >
+                <div class="metric-value" :style="{ color: m.color }">
+                  {{ m.value }}<small>{{ m.unit }}</small>
+                </div>
+                <div class="metric-label">{{ m.label }}</div>
               </div>
-              <div class="metric-label">{{ m.label }}</div>
             </div>
-          </div>
-        </PanelBox>
+          </PanelBox>
+          <PanelBox title="实时航线态势" class="map-panel">
+            <AirportMap :pressure="securityStore.data?.pressure" />
+          </PanelBox>
+        </div>
 
-        <PanelBox title="行李分拣量">
-          <BaggageBar :data="baggageStore.data" :loading="baggageStore.loading" />
-        </PanelBox>
-
-        <PanelBox title="各区域客流占比">
-          <PassengerPie :data="passengerStore.data" :loading="passengerStore.loading" />
-        </PanelBox>
-
-        <PanelBox title="实时航线态势">
-          <AirportMap :pressure="securityStore.data?.pressure" />
-        </PanelBox>
-
-        <PanelBox title="安检通行压力">
-          <SecurityGauge :data="securityStore.data" :loading="securityStore.loading" />
-        </PanelBox>
+        <div class="col">
+          <PanelBox title="行李分拣量">
+            <BaggageBar :data="baggageStore.data" :loading="baggageStore.loading" />
+          </PanelBox>
+          <PanelBox title="安检通行压力">
+            <SecurityGauge :data="securityStore.data" :loading="securityStore.loading" />
+          </PanelBox>
+        </div>
       </div>
 
       <div class="footer">
@@ -146,10 +149,30 @@ usePolling(() => {
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1.3fr 1fr;
-  grid-template-rows: 1fr 1fr;
   gap: $gap;
   padding: 0 $gap;
   min-height: 0;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+  min-height: 0;
+}
+
+.col :deep(.panel) {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+/* 中心列：核心指标 : 实时航线态势 = 2 : 8，宽度与区域总和不变 */
+.center-col :deep(.metrics-panel) {
+  flex: 2 1 0;
+}
+
+.center-col :deep(.map-panel) {
+  flex: 8 1 0;
 }
 
 .metrics {
@@ -198,6 +221,6 @@ usePolling(() => {
   grid-template-columns: 1.4fr 1fr 1fr;
   gap: $gap;
   height: 150px;
-  margin: 0 $gap $gap;
+  margin: $gap;
 }
 </style>
