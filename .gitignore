@@ -16,6 +16,6 @@ out/
 .DS_Store
 Thumbs.db
 
-# Env
-.env
+# Env (保留示例与开发/生产配置，忽略本地覆盖)
 .env.local
+.env.*.local
