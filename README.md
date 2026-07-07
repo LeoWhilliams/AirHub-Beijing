@@ -1,6 +1,5 @@
 # AirHub-Beijing · 京翼机场中枢
 
-![大屏预览](docs/preview.png)
 ![GitHub stars](https://img.shields.io/github/stars/LeoWhilliams/AirHub-Beijing?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/LeoWhilliams/AirHub-Beijing?style=social)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
