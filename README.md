@@ -10,6 +10,7 @@
 ![ECharts](https://img.shields.io/badge/ECharts-5.5-AA344F?logo=echarts)
 
 > 一个从 0 到 1 动手制作的数据可视化大屏开源项目，用于帮助理解数据大屏的完整构建流程。
+<img width="3187" height="1710" alt="image" src="https://github.com/user-attachments/assets/6aba9c94-4a1a-42ec-9f8c-3a0e1c79b9d7" />
 
 ---
 
@@ -22,14 +23,6 @@
 | **类型** | 数据可视化大屏（Data Visualization Dashboard） |
 | **目标** | 以机场运行场景为背景，逐步构建一套可用于学习的大屏模板 |
 | **开源协议** | [MIT](./LICENSE) |
-
----
-
-## 大屏布局
-
-整屏以 **1920×1080** 为设计基准等比缩放，深色科技风，模块带渐变静态边框与四角小灯：
-<img width="3187" height="1710" alt="image" src="https://github.com/user-attachments/assets/6aba9c94-4a1a-42ec-9f8c-3a0e1c79b9d7" />
-
 
 ---
 
